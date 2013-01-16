@@ -5,10 +5,12 @@ The ts-browser is a web front-end to the Apelon DTS Terminology Service.
 
 http://apelon-dts.sourceforge.net/
 
+See http://ts.jembi.org/ for a demo.
+
 Overview
 --------
 The ts-browser was created by Jembi Health Systems as part of the RHEA project in Rwanda.
-It was motivated by the need for a publicly accessible, vendor-neutral and customizable web-based browser for the terminology service (TS) component.
+It was motivated by the need for a publicly accessible, vendor-neutral and customisable web-based browser for the terminology service (TS) component.
 
 For more information on RHEA, see
 * http://rhea.jembi.org
@@ -118,7 +120,7 @@ if something goes wrong.
 
 Future Work
 -----------
-Altough currently implemented as an Apelon DTS front-end, this software should be enhanced to support
+Although currently implemented as an Apelon DTS front-end, this software should be enhanced to support
 other terminology services. New services could easily be supported by adding code level support for them,
 but ideally we would like to use a standard such as the Common Terminology Services (CTS) for communication.
 http://www.hl7.org/implement/standards/product_brief.cfm?product_id=10
