@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+
+<!--
+	 ANT build file.
+
+	 This file is based on the old OpenMRS module build.xml
+	 (e.g. https://source.openmrs.org/browse/Modules/htmlformentry/build.xml?r=8333)
+-->
+<project name="TerminologyService_API" default="package-module">
+		
+	<target name="init" description="initialization">
+		<path id="classpath">
+			<fileset dir="lib">
+				<include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="lib-common">
+				<include name="**/*.jar"/>
+			</fileset>
+		</path>
+	</target>
+
+	
+	
+	<target name="clean" description="Delete build and dist directories">
+		<delete dir="dist" />
+		<delete dir="build" />
+	</target>
+	
+	
+	<target name="compile-module" depends="init" description="Compiles the module">
+		<mkdir dir="build" />
+		
+		<copy todir="build">
+			<fileset dir="src/" excludes="**/*.java" />
+		</copy>
+		
+		<javac destdir="build" classpathref="classpath" debug="true" debuglevel="lines,vars,source">
+			<src path="src/" />
+			<include name="**/*.java" />
+		</javac>
+	</target>
+
+	
+	
+	
+	<target name="package-module" depends="compile-module" description="Packages module into jar file">
+		<mkdir dir="dist" />
+		
+		<!-- Copy module metadata -->
+		<copy todir="build/">
+			<fileset dir="metadata/" includes="**/*" />
+		</copy>
+		
+		<!-- Copy log4j properties -->
+		<copy todir="build/">
+			<fileset dir="" includes="log4j.xml" />
+		</copy>
+		
+				
+		
+		<!-- Copy lib folder -->
+		<!-- (lib should only contain this module's required -->
+		<!-- libraries that OpenMRS doesn't contain already) -->
+		<copy todir="build/lib" failonerror="false">
+			<fileset dir="lib" includes="**/*" />
+		</copy>
+		
+		<!-- Create distributable jar file -->
+		<jar destfile="dist/TerminologyService_API.jar">
+			<fileset dir="build">
+				<include name="**/*" />
+				<exclude name="**/*Test*.class" />
+				<exclude name="**/CreateInitialDataSet.class" />
+				<exclude name="**/test/**/*" />
+			</fileset>
+		</jar>
+	</target>
+	
+	
+	<target name="package-jar" depends="package-module" description="Packages class files into jar file to be included in other projects">
+		<!-- Create distributable jar file -->
+		<jar destfile="dist/TerminologyService_API.jar">
+			<fileset dir="build" >
+				<include name="**/*" />
+				<exclude name="**/*Test*.class" />
+				<exclude name="**/CreateInitialDataSet.class" />
+				<exclude name="**/test/**/*" />				
+			</fileset>
+		</jar>
+	</target>
+	
+</project>
+
