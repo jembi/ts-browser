@@ -45,32 +45,48 @@ so if you do install it one there, feel free to contribute an install guide!
 (see also this guide for installing on Ubuntu https://jembiprojects.jira.com/wiki/display/RHEAPILOT/Apelon+DTS+3.5+Installation).
 Note that this API has only been tested against DTS version 3.5.
 * Install both Apache and Tomcat
+
 ```
 sudo apt-get install apache2 tomcat7
 ```
+
 * Install PHP
+
 ```
 sudo apt-get install php5 libapache2-mod-php5 php5-cgi
 ```
+
 Edit the file /etc/php5/apache2/php.ini, setting On to the option allow_url_include:
+
 ```
 allow_url_include = On
 ```
+
 This is necessary in order to use the PHP/Java bridge in PHP.
+
 * Install PHP/Java Bridge
+
 Download the war file available via http://php-java-bridge.sourceforge.net/pjb/download.php
 Rename the file JavaBridge.war if it isn't already named so
 Copy the war file to /var/lib/tomcat7/webapps/
+
 * Setup the website
+
 Copy the Web code to /var/www/, e.g. sudo cp -R Web /var/www/tsbrowser
 Create a directory called export and make sure that the user tomcat7 has read/write access to it, i.e.
+
 ```
 sudo chown tomcat7:tomcat7 export
 ```
+
 This folder will be used by the API layer to cache csv exports in.
+
 * Compile the API code by running Ant. Copy the compiled jar to /usr/share/tomcat7/lib to make it available to the PHP/Java bridge
+
 * Copy the jars in the directories lib and lib-common of the API source to /usr/share/tomcat7/lib, EXCEPT for the jar servlet-api.jar (it will conflict with the existing one in the directory).
+
 * Restart both Apache and Tomcat
+
 ```
 sudo /etc/init.d/apache2 restart
 sudo /etc/init.d/tomcat7 restart
@@ -85,29 +101,37 @@ A note on security: The website only needs to be accessed externally by clients 
 Web Service
 -----------
 The following service is exposed by the browser:
+
 ```
 http://server/validate.php?namespaceCode=CODE&conceptCode=CODE
 ```
+
 An example might be:
+
 ```
-http://yourserver/validate.php?namespaceCode=ICD10RW&conceptCode=A00.0
+http://ts.jembi.org/validate.php?namespaceCode=ICD10RW&conceptCode=A00.0
 ```
 
 The resulting xml will look as follows on success:
+
 ```
 <tsvalidate>
   <result>1</result>
 </tsvalidate>
 ```
+
 and will return a 0 if the code is invalid.
 
 There's also
+
 ```
 <tsvalidate>
   <result>Invalid Request</result>
 </tsvalidate>
 ```
+
 and
+
 ```
 <tsvalidate>
   <result>Exception</result>
@@ -116,6 +140,7 @@ and
   </details>
 </tsvalidate>
 ```
+
 if something goes wrong.
 
 Future Work
