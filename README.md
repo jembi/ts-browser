@@ -1,9 +1,9 @@
 Jembi Terminology Service Browser
 =================================
 
-The ts-browser is a web front-end to the Apelon DTS Terminology Service.
+The _ts-browser_ is a web front-end to the [Apelon DTS Terminology Service](http://apelon-dts.sourceforge.net/).
 
-http://apelon-dts.sourceforge.net/
+[Screenshots](https://github.com/jembi/ts-browser/wiki/Screenshots)
 
 Overview
 --------
@@ -37,7 +37,7 @@ Ubuntu Installation
 -------------------
 The following guide is for installation on Ubuntu using Apache and Apache Tomcat.
 The project has been known to run fine on Windows and Mac OSX systems,
-so if you do install it one there, feel free to contribute an install guide!
+so if you do install it on there, feel free to contribute an install guide!
 
 *	If not already done, first install Apelon DTS http://apelon-dts.sourceforge.net/
 	(see also this guide for installing on Ubuntu https://jembiprojects.jira.com/wiki/display/RHEAPILOT/Apelon+DTS+3.5+Installation).
